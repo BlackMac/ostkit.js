@@ -1,0 +1,27 @@
+{
+  "name": "ostkit",
+  "version": "0.0.1",
+  "description": "A Javascript Client for the OST KIT (kit.ost.com) API",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec --bail --check-leaks test/"
+  },
+  "keywords": [
+    "ostkit",
+    "ost.com",
+    "blockchain",
+    "cryptocurrencies",
+    "api"
+  ],
+  "author": "Stefan Lange-Hegermann <stefan@firmamentbot.com> (http://firmamentbot.com)",
+  "license": "MIT",
+  "repository": "https://github.com/BlackMac/ostkit.js",
+  "homepage": "http://firmamentbot.com/",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "crypto": "^1.0.1",
+    "mocha": "^5.1.1",
+    "query-string": "^6.0.0",
+    "should": "^13.2.1"
+  }
+}
