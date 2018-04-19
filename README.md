@@ -1,6 +1,6 @@
 # ostkit.js
 
-promise based client for [OST KIT](kit.ost.com)
+promise based client for [OST KIT](https://kit.ost.com)
 
 ## Installation
 
