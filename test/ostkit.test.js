@@ -124,90 +124,34 @@ describe('ostkit internal', function() {
 });
 
 const calls=[
-    {name:"usersCreate", path:"/users/create", method:"GET", fields:["name"]},
-    {name:"usersEdit", path:"/users/edit", method:"POST", fields:["uuid","name"]}
-    // "usersList":{name:"usersList", method:"GET", fields:["page_no","filter", "order_by", "order"]},
-    // "usersAirdropDrop":{name:"usersAirdropDrop", method:"POST", fields:["amount", "list_type"]},
-    // "usersAirdropStatus":{name:"usersAirdropStatus", method:"GET", fields:["airdrop_uuid"]},
-    // "transactiontypesCreate":{name:"transactiontypesCreate", method:"POST", fields:["name", "kind", "currency_type", "currency_value", "commission_percent"]},
-    // "transactiontypesEdit":{name:"transactiontypesEdit", method:"POST", fields:["client_transaction_id", "name", "kind", "currency_type", "currency_value", "commission_percent"]},
-    // "transactiontypesList":{name:"transactiontypesList", method:"GET", fields:[]},
-    // "transactiontypesExecute":{name:"transactiontypesExecute", method:"POST", fields:["from_uuid", "to_uuid", "transaction_kind"]},
-    // "transactiontypesStatus":{name:"transactiontypesStatus", method:"GET", fields:["transaction_uuids"]}
+    {name:"usersCreate", path:"/users/create", method:"POST", fields:{"name":"test"}},
+    {name:"usersEdit", path:"/users/edit", method:"POST", fields:{"uuid":"test","name":"test"}},
+    {name:"usersList", path:"/users/list", method:"GET", fields:{"page_no":"test","filter":"test", "order_by":"test", "order":"test"}},
+    {name:"usersAirdropDrop", path:"/users/airdrop/drop", method:"POST", fields:{"amount":"test", "list_type":"test"}},
+    {name:"usersAirdropStatus", path:"/users/airdrop/status", method:"GET", fields:{"airdrop_uuid":"test"}},
+    {name:"transactiontypesCreate", path:"/transaction-types/create", method:"POST", fields:{"name":"test", "kind":"test", "currency_type":"test", "currency_value":"test", "commission_percent":"test"}},
+    {name:"transactiontypesEdit", path:"/transaction-types/edit", method:"POST", fields:{"client_transaction_id":"test", "name":"test", "kind":"test", "currency_type":"test", "currency_value":"test", "commission_percent":"test"}},
+    {name:"transactiontypesList", path:"/transaction-types/list", method:"GET", fields:{}},
+    {name:"transactiontypesExecute", path:"/transaction-types/execute", method:"POST", fields:{"from_uuid":"test", "to_uuid":"test", "transaction_kind":"test"}},
+    {name:"transactiontypesStatus", path:"/transaction-types/status", method:"POST", fields:{"transaction_uuids":"test"}}
 ]
 describe('ostkit API Calls', function() {
+    var ok = new Ostkit("apikey", "apisecret", "http://www.demo.com");
+    beforeEach(function(done) {
+        ok.fetcher=null;
+        done()
+    });
     calls.forEach(element => {
         describe(element.name+"()", function(done) {
-            it("it should send a get request to "+element.path, function(done) {
-                var ok = new Ostkit("apikey", "apisecret", "http://www.demo.com");
+            it("it should send a "+element.method+" request to "+element.path, function(done) {
                 ok.fetcher=(function(data, config){
                     data.should.startWith(element.path)
                     config.method.should.equal(element.method)
                     return {"data":{"success":true, "data":null}}
                 });
                 var n = element.name;
-                console.log(element)
-                ok[n]().then(function() { done() }, done);
+                ok[n](element.fields).then(function() { done() }, done);
             });
         })
     });
-  describe('usersList()', function(done) {
-    it('it should send a get request to /users/list', function(done) {
-        var ok = new Ostkit("apikey", "apisecret", "http://www.demo.com");
-        ok.fetcher=(function(data, config){
-            data.should.startWith("/users/list?api_key=apikey&filter=all&order=desc&order_by=creation_time&page_no=1&request_timestamp=")
-            config.method.should.equal("GET")
-            return {"data":{"success":true, "data":null}}
-        });
-        ok.usersList().then(function() { done() }, done);
-    });
-  })
-
-  describe('usersCreate()', function(done) {
-    it('it should send a post request to /users/create', function(done) {
-        var ok = new Ostkit("apikey", "apisecret", "http://www.demo.com");
-        ok.fetcher=(function(data, config){
-            data.should.startWith("/users/create")
-            config.method.should.equal("POST")
-            return {"data":{"success":true, "data":null}}
-        });
-        ok.usersCreate({name:"demouser"}).then(function() { done() }, done);
-    });
-  })
-
-  describe('usersEdit()', function(done) {
-    it('it should send a post request to /users/edit', function(done) {
-        var ok = new Ostkit("apikey", "apisecret", "http://www.demo.com");
-        ok.fetcher=(function(data, config){
-            data.should.startWith("/users/edit")
-            config.method.should.equal("POST")
-            return {"data":{"success":true, "data":null}}
-        });
-        ok.usersEdit({uuid:"uu-id", name:"demouser"}).then(function() { done() }, done);
-    });
-  })
-
-  describe('usersAirdropDrop()', function(done) {
-    it('it should send a post request to /users/airdrop/drop', function(done) {
-        var ok = new Ostkit("apikey", "apisecret", "http://www.demo.com");
-        ok.fetcher=(function(data, config){
-            data.should.startWith("/users/airdrop/drop")
-            config.method.should.equal("POST")
-            return {"data":{"success":true, "data":null}}
-        });
-        ok.usersAirdropDrop({amount:1, list_type:"demo"}).then(function() { done() }, done);
-    });
-  })
-
-  describe('usersAirdropStatus()', function(done) {
-    it('it should send a post request to /users/airdrop/status', function(done) {
-        var ok = new Ostkit("apikey", "apisecret", "http://www.demo.com");
-        ok.fetcher=(function(data, config){
-            data.should.startWith("/users/airdrop/status")
-            config.method.should.equal("GET")
-            return {"data":{"success":true, "data":null}}
-        });
-        ok.usersAirdropStatus({airdrop_uuid:"uu-id"}).then(function() { done() }, done);
-    });
-  })
-});
+  });
