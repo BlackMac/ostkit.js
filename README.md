@@ -7,16 +7,18 @@ promise based client for [OST KIT](https://kit.ost.com)
 Using npm:
 
 ```bash
-$ npm install ostkit --save
+npm install ostkit --save
 ```
 
 Using yarn:
 
 ```bash
-$ yarn add ostkit --save
+yarn add ostkit --save
 ```
 
 ## Usage
+
+Check out the [tutorial for beginners!](https://github.com/BlackMac/ostkit.js/blob/master/TUTORIAL.md)
 
 List users
 ```js
@@ -55,4 +57,6 @@ ok.usersCreate({name: "Stefan"}).then((res) => {
 * __transactiontypesExecute__`({from_uuid, to_uuid, transaction_kind})`
 * __transactiontypesStatus__`({transaction_uuids})`
 
+## FIRMAMENT
 
+ostkit.js is part of my OST KIT⍺ Phase II Project [FIRMAMENT](http://firmamentbot.com) to support ostkit.js you can send donations (ETH or OST) to 0xacAAc9a6348D478B5c3512B7C06D6BB2620F963B
