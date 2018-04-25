@@ -61,4 +61,6 @@ ok.usersCreate({name: "Stefan"}).then((res) => {
 
 ## FIRMAMENT
 
-ostkit.js is part of my OST KIT⍺ Phase II Project [FIRMAMENT](http://firmamentbot.com) to support ostkit.js you can send donations (ETH or OST) to 0xacAAc9a6348D478B5c3512B7C06D6BB2620F963B
+ostkit.js is part of my OST KIT⍺ Phase II Project [FIRMAMENT](http://firmamentbot.com) 
+
+I am using [serveo](https://serveo.net/) for development on ostkit.js and [Firmament](https://firmamentbot.com). The author of that awesome service (Trevor) is asking his users for donations to help fund his friends babys liver transplant. If anyone of you can spare some coins [please do so at [gofundme.com](https://www.gofundme.com/jun-zacharys-liver-transplant)
