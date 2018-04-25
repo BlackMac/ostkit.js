@@ -1,5 +1,7 @@
 # ostkit.js
 
+[![Build Status](https://travis-ci.org/BlackMac/ostkit.js.svg?branch=master)](https://travis-ci.org/BlackMac/ostkit.js)
+
 promise based client for [OST KIT](https://kit.ost.com)
 
 ## Installation
