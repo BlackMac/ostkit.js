@@ -46,6 +46,26 @@ ok.usersCreate({name: "Stefan"}).then((res) => {
 });
 ```
 
+## Events
+
+You can monitor transactions by using **monitorTransaction(transaction_uuid, callback)** it only gets fired when the transaction status changes and is removed after the first `complete` or `failed` status.
+
+```js
+var Ostkit=require("ostkit")
+
+var ok = new Ostkit("YOUR_API_KEY", "YOUR_API_SECRET");
+
+ok.monitorTransaction("transaction-uuid" , function(transaction) {
+    if (transaction.status == "complete") {
+        console.log("Successful transaction")
+    } else if (transaction.status == "failed") {
+        console.log("Transaction failed")
+    } else {
+        console.log("Status: ",transaction.status)
+    }
+})
+```
+
 ## Supported Methods
 
 * __usersCreate__`({name})`
