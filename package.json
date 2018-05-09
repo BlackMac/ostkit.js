@@ -1,6 +1,6 @@
 {
   "name": "ostkit",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A Javascript Client for the OST KIT (kit.ost.com) API",
   "main": "index.js",
   "scripts": {
